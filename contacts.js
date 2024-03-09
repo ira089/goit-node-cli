@@ -8,14 +8,13 @@ const updateContacts = (contacts) =>
 
 export async function listContacts() {
   const data = await fs.readFile(contactsPath);
-  //   return console.log(JSON.parse(data));
   return JSON.parse(data);
 }
 
 export async function getContactById(contactId) {
   const contacts = await listContacts();
   const result = contacts.find((item) => item.id === contactId);
-  //   return  console.log(result);
+
   return result || null;
 }
 
@@ -27,7 +26,6 @@ export async function removeContact(contactId) {
   }
   const [result] = contacts.splice(index, 1);
   await updateContacts(contacts);
-  //   return console.log(result);
   return result;
 }
 
@@ -41,8 +39,5 @@ export async function addContact(name, email, phone) {
   };
   contacts.push(newContact);
   await updateContacts(contacts);
-  //   return console.log(newContact);
   return newContact;
 }
-
-// addContact("Ira", "ira@gmail.com", "123654");
